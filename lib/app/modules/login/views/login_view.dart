@@ -161,7 +161,7 @@ class LoginView extends GetView<LoginController> {
 
   Widget buildLoginButton() {
     return ElevatedButton(
-      onPressed: () => controller.auth(),
+      onPressed: () => controller.authLogin(),
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.black,
         shape: const StadiumBorder(),
