@@ -6,8 +6,8 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
-import '../modules/tahun_ajaran/bindings/tahun_ajaran_binding.dart';
-import '../modules/tahun_ajaran/views/tahun_ajaran_view.dart';
+import '../modules/master_tahun_ajaran/bindings/tahun_ajaran_binding.dart';
+import '../modules/master_tahun_ajaran/views/master_tahun_ajaran_view.dart';
 
 part 'app_routes.dart';
 

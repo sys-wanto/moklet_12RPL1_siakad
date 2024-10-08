@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/tahun_ajaran_controller.dart';
+import '../controllers/master_tahun_ajaran_controller.dart';
 
 class TahunAjaranView extends GetView<TahunAjaranController> {
   const TahunAjaranView({super.key});

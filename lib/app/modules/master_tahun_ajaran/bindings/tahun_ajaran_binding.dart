@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../controllers/tahun_ajaran_controller.dart';
+import '../controllers/master_tahun_ajaran_controller.dart';
 
 class TahunAjaranBinding extends Bindings {
   @override

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../controllers/bottombar_controller.dart';
 import '../../home/views/home_view.dart';
-import '../../tahun_ajaran/views/tahun_ajaran_view.dart';
+import '../../master_tahun_ajaran/views/master_tahun_ajaran_view.dart';
 import '../../../util/color.dart';
 
 class BottombarView extends GetView<BottombarController> {

@@ -5,6 +5,7 @@ abstract class Routes {
   Routes._();
   static const HOME = _Paths.HOME;
   static const TAHUN_AJARAN = _Paths.TAHUN_AJARAN;
+  static const MASTER_KELAS = _Paths.MASTER_KELAS;
   static const LOGIN = _Paths.LOGIN;
   static const BOTTOMBAR = _Paths.BOTTOMBAR;
 }
@@ -13,6 +14,7 @@ abstract class _Paths {
   _Paths._();
   static const HOME = '/home';
   static const TAHUN_AJARAN = '/tahun-ajaran';
+  static const MASTER_KELAS = '/master-kelas';
   static const LOGIN = '/login';
   static const BOTTOMBAR = '/bottombar';
 }
