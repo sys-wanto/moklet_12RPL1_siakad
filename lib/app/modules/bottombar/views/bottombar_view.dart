@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../controllers/bottombar_controller.dart';
 import '../../home/views/home_view.dart';
 import '../../master_tahun_ajaran/views/master_tahun_ajaran_view.dart';
+import '../../master_kelas/views/master_kelas_view.dart';
 import '../../../util/color.dart';
 
 class BottombarView extends GetView<BottombarController> {
@@ -20,6 +21,7 @@ class BottombarView extends GetView<BottombarController> {
                 // LoginView(),
                 HomeView(),
                 TahunAjaranView(),
+                MasterKelasView(),
               ],
             ),
           ),
@@ -39,6 +41,10 @@ class BottombarView extends GetView<BottombarController> {
               controller.BotBar(
                 ikon: Icons.calendar_month,
                 label: 'Tahun Ajaran',
+              ),
+              controller.BotBar(
+                ikon: Icons.door_back_door,
+                label: 'Kelas',
               ),
             ],
           ),
