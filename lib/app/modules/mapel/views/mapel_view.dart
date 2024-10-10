@@ -38,7 +38,7 @@ class MapelView extends GetView<MapelController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Nama Mata Pelajaran: ${element.name ?? 'N/A'}',
+                          '${element.name ?? 'N/A'}',
                           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                         ),
                         SizedBox(height: 8),
