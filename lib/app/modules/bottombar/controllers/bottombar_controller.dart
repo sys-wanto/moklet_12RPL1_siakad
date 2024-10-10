@@ -1,11 +1,25 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import '../../home/controllers/home_controller.dart';
+import '../../mapel/controllers/mapel_controller.dart';
 
 class BottombarController extends GetxController {
   var tabIndex = 0;
 
   void changeIndex(int index) {
     tabIndex = index;
+    switch (index) {
+      case 0:
+        if (!Get.isRegistered<HomeController>()) {
+          Get.put(HomeController());
+        }
+        break;
+      case 1:
+        if (!Get.isRegistered<MapelController>()) {
+          Get.put(MapelController());
+        }
+        break;
+    }
     update();
   }
 

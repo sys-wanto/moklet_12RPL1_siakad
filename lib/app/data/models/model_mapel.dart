@@ -31,7 +31,7 @@ class DataMapel {
   int? id;
   String? name;
   String? jenis;
-  List<int>? guruId;
+  List<dynamic>? guruId;
   String? keterangan;
 
   DataMapel({this.id, this.name, this.jenis, this.guruId, this.keterangan});
@@ -40,8 +40,9 @@ class DataMapel {
     id = json['id'];
     name = json['name'];
     jenis = json['jenis'];
-    guruId = json['guru_id'].cast<int>();
-    keterangan = json['keterangan'];
+    // guruId = json['guru_id'];
+    guruId = json['guru_id']?.cast<dynamic>();
+    keterangan = json['keterangan'] ?? '';
   }
 
   Map<String, dynamic> toJson() {

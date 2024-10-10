@@ -3,9 +3,8 @@ import 'package:get/get.dart';
 
 import '../controllers/bottombar_controller.dart';
 import '../../home/views/home_view.dart';
-import '../../master_tahun_ajaran/views/master_tahun_ajaran_view.dart';
-import '../../master_kelas/views/master_kelas_view.dart';
-import '../../../util/color.dart';
+import '../../mapel/views/mapel_view.dart';
+
 
 class BottombarView extends GetView<BottombarController> {
   const BottombarView({Key? key});
@@ -20,14 +19,13 @@ class BottombarView extends GetView<BottombarController> {
               children: [
                 // LoginView(),
                 HomeView(),
-                TahunAjaranView(),
-                MasterKelasView(),
+                MapelView(),
               ],
             ),
           ),
           bottomNavigationBar: BottomNavigationBar(
-            unselectedItemColor: Palette.darkergray,
-            selectedItemColor: Palette.red,
+            unselectedItemColor: Colors.grey,
+            selectedItemColor: Colors.red,
             onTap: controller.changeIndex,
             currentIndex: controller.tabIndex,
             showSelectedLabels: true,
@@ -40,11 +38,7 @@ class BottombarView extends GetView<BottombarController> {
               ),
               controller.BotBar(
                 ikon: Icons.calendar_month,
-                label: 'Tahun Ajaran',
-              ),
-              controller.BotBar(
-                ikon: Icons.door_back_door,
-                label: 'Kelas',
+                label: 'Mapel',
               ),
             ],
           ),
