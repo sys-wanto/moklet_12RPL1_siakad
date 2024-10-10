@@ -10,7 +10,7 @@ class MapelView extends GetView<MapelController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('MASTER MATA PELAJARAN'),
+        title: const Text('MATA PELAJARAN'),
         centerTitle: true,
       ),
       body: Padding(
