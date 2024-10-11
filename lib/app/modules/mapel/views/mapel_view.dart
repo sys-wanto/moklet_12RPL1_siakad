@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
 import '../controllers/mapel_controller.dart';
 
 class MapelView extends GetView<MapelController> {
@@ -22,7 +20,7 @@ class MapelView extends GetView<MapelController> {
             }
 
             if (controller.mapel.value.data == null || controller.mapel.value.data!.isEmpty) {
-              return Center(child: Text('No data found.'));
+              return Center(child: Text('Data kosong.'));
             }
 
             return ListView.builder(

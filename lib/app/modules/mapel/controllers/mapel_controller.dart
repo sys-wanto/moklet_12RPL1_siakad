@@ -7,7 +7,6 @@ class MapelController extends GetxController {
   final count = 0.obs;
   Rx<bool> isLoaded = false.obs;
   Rx<ModelMapel> mapel = ModelMapel().obs;
-  final list_test = [].obs;
   
   @override
   void onInit() {
