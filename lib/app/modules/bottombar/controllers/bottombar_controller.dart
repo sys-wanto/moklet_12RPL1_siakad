@@ -14,14 +14,11 @@ class BottombarController extends GetxController {
   } else if (index == 1 && !Get.isRegistered<MapelController>()) {
     Get.put(MapelController());
   }
-  
+
   WidgetsBinding.instance.addPostFrameCallback((_) {
     if (index == 1) {
       if (Get.isRegistered<MapelController>()) {
         Get.find<MapelController>().getMapel();
-      } else {
-        // Debugging - confirm registration
-        print("MapelController is not registered!");
       }
     }
     update();

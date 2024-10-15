@@ -15,57 +15,57 @@ class MapelView extends GetView<MapelController> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Obx(() {
-  if (!Get.isRegistered<MapelController>()) {
-    return Center(child: CircularProgressIndicator());
-  }
+          if (!Get.isRegistered<MapelController>()) {
+            return Center(child: CircularProgressIndicator());
+          }
 
-  final controller = Get.find<MapelController>();
-  
-  if (!controller.isLoaded.value) {
-    return Center(child: CircularProgressIndicator());
-  }
-  if (controller.mapel.value.data == null || controller.mapel.value.data!.isEmpty) {
-    return Center(child: Text('Data kosong.'));
-  }
-  return ListView.builder(
-    itemCount: controller.mapel.value.data?.length ?? 0,
-    itemBuilder: (context, index) {
-      final element = controller.mapel.value.data![index];
-      return Card(
-        margin: const EdgeInsets.symmetric(vertical: 8.0),
-        elevation: 5,
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '${element.name ?? 'N/A'}',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(height: 8),
-                Text(
-                  'Jenis: ${element.jenis ?? 'N/A'}',
-                  style: TextStyle(fontSize: 14),
-                ),
-                SizedBox(height: 8),
-                Text(
-                  'Guru Pengajar: ${element.guruId != null && element.guruId!.isNotEmpty ? element.guruId![1] : 'N/A'}',
-                  style: TextStyle(fontSize: 14),
-                ),
-                SizedBox(height: 8),
-                Text(
-                  'Keterangan: ${element.keterangan ?? 'N/A'}',
-                  style: TextStyle(fontSize: 14),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-)
+          final controller = Get.find<MapelController>();
+          
+          if (!controller.isLoaded.value) {
+            return Center(child: CircularProgressIndicator());
+          }
+          if (controller.mapel.value.data == null || controller.mapel.value.data!.isEmpty) {
+            return Center(child: Text('Data kosong.'));
+          }
+          return ListView.builder(
+            itemCount: controller.mapel.value.data?.length ?? 0,
+            itemBuilder: (context, index) {
+              final element = controller.mapel.value.data![index];
+              return Card(
+                margin: const EdgeInsets.symmetric(vertical: 8.0),
+                elevation: 5,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '${element.name ?? 'N/A'}',
+                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          'Jenis: ${element.jenis ?? 'N/A'}',
+                          style: TextStyle(fontSize: 14),
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          'Guru Pengajar: ${element.guruId != null && element.guruId!.isNotEmpty ? element.guruId![1] : 'N/A'}',
+                          style: TextStyle(fontSize: 14),
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          'Keterangan: ${element.keterangan ?? 'N/A'}',
+                          style: TextStyle(fontSize: 14),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            );
+          }
+        )
       ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,

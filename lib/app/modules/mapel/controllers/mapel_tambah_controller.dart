@@ -8,7 +8,6 @@ import '../../../data/models/model_karyawan.dart';
 import '../../../routes/app_pages.dart';
 import '../../../data/repositories/repository_karyawan.dart';
 
-
 class MapelTambahController extends GetxController {
   var textController1 = TextEditingController().obs; // Nama
   var textController2 = TextEditingController().obs; // Jenis
