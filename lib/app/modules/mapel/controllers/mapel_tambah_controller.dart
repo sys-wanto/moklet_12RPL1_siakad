@@ -64,7 +64,7 @@ class MapelTambahController extends GetxController {
     String nama = textController1.value.text;
     String jenis = textController2.value.text;
     int guru = selectedKaryawanId.value!;
-    String deskripsi = textController4.value.text;
+    String keterangan = textController4.value.text;
 
     var params = {
       "fields": ["name", "jenis", "guru_id", "keterangan"],
@@ -72,7 +72,7 @@ class MapelTambahController extends GetxController {
         "name": nama,
         "jenis": jenis,
         "guru_id": guru,
-        "keterangan": deskripsi,
+        "keterangan": keterangan,
       }
     };
 

@@ -86,7 +86,7 @@ class MapelTambahView extends GetView<MapelTambahController> {
               )),
               const SizedBox(height: 20),
               Obx(() => controller.FormTextField(
-                labelText: 'Deskripsi',
+                labelText: 'Keterangan',
                 controller: controller.textController4.value,
                 ikon: Icons.edit,
                 tipeinput: TextInputType.phone,
