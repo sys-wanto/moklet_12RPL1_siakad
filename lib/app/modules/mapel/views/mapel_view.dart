@@ -12,36 +12,55 @@ class MapelView extends GetView<MapelController> {
         title: const Text('MATA PELAJARAN'),
         centerTitle: true,
       ),
+      // body: Container(
+      //   child: Row(
+      //     children: [
+      //       Obx(
+      //         () {
+      //           return Text(controller.nama.value);
+      //         },
+      //       ),
+      //       TextButton(
+      //         onPressed: () {
+      //           controller.ganti_nama();
+      //         },
+      //         child: Text('Tekan'),
+      //       )
+      //     ],
+      //   ),
+      // ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Obx(() {
-          if (!Get.isRegistered<MapelController>()) {
-            return Center(child: CircularProgressIndicator());
-          }
+          padding: const EdgeInsets.all(8.0),
+          child: Obx(() {
+            if (!Get.isRegistered<MapelController>()) {
+              return Center(child: CircularProgressIndicator());
+            }
 
-          final controller = Get.find<MapelController>();
-          
-          if (!controller.isLoaded.value) {
-            return Center(child: CircularProgressIndicator());
-          }
-          if (controller.mapel.value.data == null || controller.mapel.value.data!.isEmpty) {
-            return Center(child: Text('Data kosong.'));
-          }
-          return ListView.builder(
-            itemCount: controller.mapel.value.data?.length ?? 0,
-            itemBuilder: (context, index) {
-              final element = controller.mapel.value.data![index];
-              return Card(
-                margin: const EdgeInsets.symmetric(vertical: 8.0),
-                elevation: 5,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+            final controller = Get.find<MapelController>();
+
+            if (!controller.isLoaded.value) {
+              return Center(child: CircularProgressIndicator());
+            }
+            if (controller.mapel.value.data == null ||
+                controller.mapel.value.data!.isEmpty) {
+              return Center(child: Text('Data kosong.'));
+            }
+            return ListView.builder(
+              itemCount: controller.mapel.value.data?.length ?? 0,
+              itemBuilder: (context, index) {
+                final element = controller.mapel.value.data![index];
+                return Card(
+                  margin: const EdgeInsets.symmetric(vertical: 8.0),
+                  elevation: 5,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           '${element.name ?? 'N/A'}',
-                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
                         ),
                         SizedBox(height: 8),
                         Text(
@@ -64,9 +83,7 @@ class MapelView extends GetView<MapelController> {
                 );
               },
             );
-          }
-        )
-      ),
+          })),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -93,6 +110,3 @@ class MapelView extends GetView<MapelController> {
     );
   }
 }
-
-
-

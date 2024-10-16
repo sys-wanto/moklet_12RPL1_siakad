@@ -4,8 +4,8 @@ import "package:http/http.dart" as http;
 import '../../data/models/model_mapel.dart';
 import '../../data/services/constant.dart';
 
-class RepositoryMapel {
-  RepositoryMapel();
+class RepositoryTahunAjaran {
+  RepositoryTahunAjaran();
 
   Future<ModelMapel> loadMapel() async {
     addCookies();
@@ -19,7 +19,7 @@ class RepositoryMapel {
     try {
       if (response.statusCode == 200) {
         var jsonString = await response.stream.bytesToString();
-        print('MODEL MAPEL ' +
+        print('MODEL TAHUN AJARAN ' +
             ModelMapel.fromJson(jsonDecode(jsonString)).message!);
         return ModelMapel.fromJson(jsonDecode(jsonString));
       } else {
@@ -31,22 +31,4 @@ class RepositoryMapel {
       return ModelMapel(isError: true, data: [], message: 'Gagal Catch');
     }
   }
-
-  Future<http.StreamedResponse?> postMapel({required Map<String, dynamic> body}) async {
-  String url = CORS_ANYWHERE + DOMAIN;
-  var res = http.Request(
-    'POST',
-    Uri.parse('$url/send_request?model=moklet.mapel'),
-  );
-  res.headers.addAll(defaultHeader);
-  res.body = jsonEncode(body);
-  http.StreamedResponse response = await res.send();
-
-  if (response.statusCode == 200) {
-    return response;
-  } else {
-    print(response.reasonPhrase);
-    return null;
-  }
-}
 }
