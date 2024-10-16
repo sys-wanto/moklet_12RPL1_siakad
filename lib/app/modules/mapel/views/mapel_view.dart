@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/mapel_controller.dart';
 
 class MapelView extends GetView<MapelController> {
@@ -13,27 +14,30 @@ class MapelView extends GetView<MapelController> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Obx(
-          () {
-            if (!controller.isLoaded.value) {
-              return Center(child: CircularProgressIndicator());
-            }
+        child: Obx(() {
+          if (!Get.isRegistered<MapelController>()) {
+            return Center(child: CircularProgressIndicator());
+          }
 
-            if (controller.mapel.value.data == null || controller.mapel.value.data!.isEmpty) {
-              return Center(child: Text('Data kosong.'));
-            }
-
-            return ListView.builder(
-              itemCount: controller.mapel.value.data?.length ?? 0,
-              itemBuilder: (context, index) {
-                final element = controller.mapel.value.data![index];
-                return Card(
-                  margin: const EdgeInsets.symmetric(vertical: 8.0),
-                  elevation: 5,
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+          final controller = Get.find<MapelController>();
+          
+          if (!controller.isLoaded.value) {
+            return Center(child: CircularProgressIndicator());
+          }
+          if (controller.mapel.value.data == null || controller.mapel.value.data!.isEmpty) {
+            return Center(child: Text('Data kosong.'));
+          }
+          return ListView.builder(
+            itemCount: controller.mapel.value.data?.length ?? 0,
+            itemBuilder: (context, index) {
+              final element = controller.mapel.value.data![index];
+              return Card(
+                margin: const EdgeInsets.symmetric(vertical: 8.0),
+                elevation: 5,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           '${element.name ?? 'N/A'}',
@@ -60,16 +64,32 @@ class MapelView extends GetView<MapelController> {
                 );
               },
             );
-          },
-        ),
+          }
+        )
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          controller.getMapel();
-        },
-        child: Icon(Icons.refresh),
-        backgroundColor: Colors.red,
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            onPressed: () {
+              controller.getMapel();
+            },
+            child: Icon(Icons.refresh),
+            backgroundColor: Colors.red,
+          ),
+          SizedBox(height: 10),
+          FloatingActionButton(
+            onPressed: () {
+              Get.toNamed(Routes.MAPELTAMBAH);
+            },
+            child: Icon(Icons.add),
+            backgroundColor: Colors.red,
+          ),
+          SizedBox(height: 10),
+        ],
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }

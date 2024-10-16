@@ -5,10 +5,10 @@ import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
   const LoginView({super.key});
+
   @override
   Widget build(BuildContext context) {
     final mediaSize = MediaQuery.of(context).size;
-    bool rememberUser = false;
 
     return Scaffold(
       body: Container(
@@ -16,7 +16,7 @@ class LoginView extends GetView<LoginController> {
           image: DecorationImage(
             image: AssetImage("/icon/smk-min.jpg"),
             fit: BoxFit.cover,
-            colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.5), BlendMode.darken)
+            colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.5), BlendMode.darken),
           ),
         ),
         child: Stack(
@@ -27,39 +27,38 @@ class LoginView extends GetView<LoginController> {
               left: 0,
               right: 0,
               child: Center(
-                child: loginBox(mediaSize, rememberUser, context),
+                child: loginBox(mediaSize, context),
               ),
             ),
           ],
         ),
       ),
     );
-
   }
 
   Widget logo(Size mediaSize) {
-  double logoWidth = mediaSize.width * 0.6;
-  double logoHeight = mediaSize.height * 0.3;
+    double logoWidth = mediaSize.width * 0.6;
+    double logoHeight = mediaSize.height * 0.3;
 
-  return Center(
-    child: ConstrainedBox(
-      constraints: BoxConstraints(
-        maxWidth: logoWidth,
-        maxHeight: logoHeight,
-        minWidth: 100,
-        minHeight: 50, 
-      ),
+    return Center(
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          maxWidth: logoWidth,
+          maxHeight: logoHeight,
+          minWidth: 100,
+          minHeight: 50,
+        ),
         child: FittedBox(
-        fit: BoxFit.contain,
-        child: Image(
-          image: AssetImage("/icon/logo.png"),
+          fit: BoxFit.contain,
+          child: Image(
+            image: AssetImage("/icon/logo.png"),
+          ),
         ),
       ),
-    ),
-  );
-}
+    );
+  }
 
-  Widget loginBox(Size mediaSize, rememberUser, context) {
+  Widget loginBox(Size mediaSize, BuildContext context) {
     return Center(
       child: SizedBox(
         width: mediaSize.width * 0.9,
@@ -74,14 +73,14 @@ class LoginView extends GetView<LoginController> {
           ),
           child: Padding(
             padding: const EdgeInsets.all(32.0),
-            child: buildForm(rememberUser, context),
+            child: buildForm(context),
           ),
         ),
-      )
+      ),
     );
   }
 
-   Widget buildForm(bool rememberUser, BuildContext context) {
+  Widget buildForm(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -89,13 +88,13 @@ class LoginView extends GetView<LoginController> {
           "Username",
           style: const TextStyle(color: Colors.grey),
         ),
-        buildInputField(controller.txtUsername, context, false),
+        Obx(() => buildInputField(controller.txtUsername.value, false)),
         const SizedBox(height: 20),
         Text(
           "Password",
           style: const TextStyle(color: Colors.grey),
         ),
-        Obx(() => buildInputField(controller.txtPassword, context, true)),
+        Obx(() => buildInputField(controller.txtPassword.value, true)),
         const SizedBox(height: 10),
         buildRememberForgot(),
         const SizedBox(height: 10),
@@ -104,7 +103,7 @@ class LoginView extends GetView<LoginController> {
     );
   }
 
-  Widget buildInputField(TextEditingController textController, BuildContext context, bool isPassword) {
+  Widget buildInputField(TextEditingController textController, bool isPassword) {
     return TextField(
       controller: textController,
       decoration: InputDecoration(
@@ -114,7 +113,7 @@ class LoginView extends GetView<LoginController> {
                 controller.isPasswordHidden.value ? Icons.visibility : Icons.visibility_off),
               onPressed: () => controller.togglePasswordVisibility(),
             )
-          : Icon(Icons.done),
+          : Icon(Icons.person),
       ),
       obscureText: isPassword ? controller.isPasswordHidden.value : false,
     );
@@ -159,16 +158,22 @@ class LoginView extends GetView<LoginController> {
   }
 
   Widget buildLoginButton() {
-    return ElevatedButton(
-      onPressed: () => controller.authLogin(),
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.black,
-        shape: const StadiumBorder(),
-        elevation: 20,
-        shadowColor: Colors.grey,
-        minimumSize: const Size.fromHeight(60),
-      ),
-      child: const Text("LOGIN", style: const TextStyle(color: Colors.white),),
+    return Obx(() => controller.isLoading.value
+      ? Center(child: CircularProgressIndicator())
+      : ElevatedButton(
+          onPressed: () => controller.authLogin(),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.black,
+            shape: const StadiumBorder(),
+            elevation: 20,
+            shadowColor: Colors.grey,
+            minimumSize: const Size.fromHeight(60),
+          ),
+          child: const Text(
+            "LOGIN",
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
     );
   }
 }

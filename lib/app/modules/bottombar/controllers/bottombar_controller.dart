@@ -7,21 +7,23 @@ class BottombarController extends GetxController {
   var tabIndex = 0;
 
   void changeIndex(int index) {
-    tabIndex = index;
-    switch (index) {
-      case 0:
-        if (!Get.isRegistered<HomeController>()) {
-          Get.put(HomeController());
-        }
-        break;
-      case 1:
-        if (!Get.isRegistered<MapelController>()) {
-          Get.put(MapelController());
-        }
-        break;
+  tabIndex = index;
+
+  if (index == 0 && !Get.isRegistered<HomeController>()) {
+    Get.put(HomeController());
+  } else if (index == 1 && !Get.isRegistered<MapelController>()) {
+    Get.put(MapelController());
+  }
+
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    if (index == 1) {
+      if (Get.isRegistered<MapelController>()) {
+        Get.find<MapelController>().getMapel();
+      }
     }
     update();
-  }
+  });
+}
 
   BotBar({IconData? ikon, String? label}) {
     return BottomNavigationBarItem(

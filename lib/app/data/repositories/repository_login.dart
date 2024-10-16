@@ -1,12 +1,14 @@
 import "package:http/http.dart" as http;
+import '../../data/services/constant.dart';
 
 class RepositoryLogin {
   RepositoryLogin();
 
   Future<http.StreamedResponse?> login({required Map<String, dynamic> body}) async {
+    String url = CORS_ANYWHERE + DOMAIN;
     var request = http.MultipartRequest(
       'POST',
-      Uri.parse('https://cors-anywhere.herokuapp.com/http://51.79.136.232:12016/odoo_connect'),
+      Uri.parse('$url/odoo_connect'),
     );
 
     body.forEach((key, value) {
